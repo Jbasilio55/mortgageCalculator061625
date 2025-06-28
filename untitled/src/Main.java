@@ -1,20 +1,19 @@
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("-----Mortgage Calculator----\n");
 
         //Get principal
-        int principal = (int)readNumber(
+        int principal = (int) Console.readNumber(
                 "Principal ($1k - $1M): ", 1000, 1_000_000);
 
         // Get annual interest rate
-        double annualRate = readNumber(
+        double annualRate = Console.readNumber(
                 "Annual Interest Rate: ", 1, 30);
 
         // Get loan period
-        int period = (int)readNumber("Period (Years): ", 1, 30);
+        int period = (int) Console.readNumber("Period (Years): ", 1, 30);
 
         // Call mortgage calculator
         double mortgage = getMortgage(principal, annualRate, period);
@@ -22,22 +21,6 @@ public class Main {
         System.out.println("Mortgage: " + formatMortgage);
 
         getLeftOverLoanAmount(principal, annualRate, period);
-    }
-
-    public static double readNumber(String prompt, int min, int max){
-        Scanner scanner = new Scanner(System.in);
-
-        double value;
-
-        while (true) {
-            System.out.print(prompt);
-            value = scanner.nextDouble();
-            if (value >= min && value <= max)
-                break;
-            System.out.println("Enter a value between "+ min +" and "+max);
-        }
-
-        return value;
     }
 
     public static double getMortgage(int principal, double annualRate, int period) {
